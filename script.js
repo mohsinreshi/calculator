@@ -18,5 +18,16 @@ function operate(a, operator, b) {
   else if (operator == '/') return divide(a, b);
 }
 
-const buttons = document.querySelectorAll('.button');
-const button = document.querySelector('.button');
+
+function displayDigits() {
+  let buttons = document.querySelectorAll('.button')
+  let button = document.querySelector('.button');
+  if (!button) return;
+  buttons.forEach(button => button.onclick = function(){
+    let num = button.value;
+    let displayNum = document.querySelector('span');
+    displayNum.textContent = num;
+  });
+}
+
+window.addEventListener('click', displayDigits);
