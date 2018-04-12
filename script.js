@@ -18,16 +18,25 @@ function operate(a, operator, b) {
   else if (operator == '/') return divide(a, b);
 }
 
-
-function displayDigits() {
   let buttons = document.querySelectorAll('.button')
   let button = document.querySelector('.button');
-  if (!button) return;
+  let displayNum = document.querySelector('span');
+  let num = [];
   buttons.forEach(button => button.onclick = function(){
-    let num = button.value;
-    let displayNum = document.querySelector('span');
-    displayNum.textContent = num;
+    if (num.length <= 10) {
+      num.push(button.value);
+    } else return;
+    displayNum.textContent = num.join('');
   });
-}
 
-window.addEventListener('click', displayDigits);
+  let clearButton = document.querySelector('.clear');
+  clearButton.onclick = function() {
+    num.splice(0, num.length);
+    displayNum.textContent = num.join('');
+  }
+
+  let backspaceButton = document.querySelector('.backspace');
+  backspaceButton.onclick = function(){
+    num.pop();
+    displayNum.textContent = num.join('');
+  }
