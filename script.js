@@ -22,10 +22,29 @@ function operate(a, operator, b) {
   let button = document.querySelector('.button');
   let displayNum = document.querySelector('span');
   let num = [];
+  let num1 = "";
   buttons.forEach(button => button.onclick = function(){
     if (num.length <= 10) {
       num.push(button.value);
     } else return;
+    displayNum.textContent = num.join('');
+  });
+  let decimalButton = document.querySelector('.decimal');
+  decimalButton.onclick = function() {
+    if(num.indexOf('.') == -1) {
+      if (num.length <= 10) {
+      num.push(decimalButton.value);
+    }
+  } else return;
+    displayNum.textContent = num.join('');
+  }
+
+  let operateButtons = document.querySelectorAll('.operand');
+  let operateButton = document.querySelector('.operand');
+  let operand = "";
+  operateButtons.forEach(operateButton => operateButton.onclick = function() {
+    operand = operateButton.value;
+    num.splice(0, num.length);
     displayNum.textContent = num.join('');
   });
 
@@ -33,10 +52,12 @@ function operate(a, operator, b) {
   clearButton.onclick = function() {
     num.splice(0, num.length);
     displayNum.textContent = num.join('');
+    if (num.length <= 0) displayNum.textContent = 0;
   }
 
   let backspaceButton = document.querySelector('.backspace');
   backspaceButton.onclick = function(){
     num.pop();
     displayNum.textContent = num.join('');
+    if (num.length <= 0) displayNum.textContent = 0;
   }
