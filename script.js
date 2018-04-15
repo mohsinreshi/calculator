@@ -22,7 +22,6 @@ function operate(a, operator, b) {
   let button = document.querySelector('.button');
   let displayNum = document.querySelector('span');
   let num = [];
-  let num1 = "";
   buttons.forEach(button => button.onclick = function(){
     if (num.length <= 10) {
       num.push(button.value);
@@ -37,16 +36,25 @@ function operate(a, operator, b) {
     }
   } else return;
     displayNum.textContent = num.join('');
-  }
+  };
 
   let operateButtons = document.querySelectorAll('.operand');
   let operateButton = document.querySelector('.operand');
   let operand = "";
+  let num1 = 0;
+  let num2 = 0;
   operateButtons.forEach(operateButton => operateButton.onclick = function() {
+    num1 = parseFloat(displayNum.textContent);
     operand = operateButton.value;
     num.splice(0, num.length);
     displayNum.textContent = num.join('');
   });
+
+  let equalButton = document.querySelector('.equal');
+  equalButton.onclick = function() {
+    num2 = parseFloat(displayNum.textContent);
+    operate(num1, operand, num2);
+  }
 
   let clearButton = document.querySelector('.clear');
   clearButton.onclick = function() {
