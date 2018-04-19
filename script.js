@@ -2,15 +2,19 @@ function add (a, b) {
   displayNum.textContent = a + b;
 }
 function subtract (a, b) {
-  displayNum.textContent = a - b;
+  let result = a - b;
+  result = Math.floor(result * 100) / 100;
+  displayNum.textContent = result.toFixed(3);
 }
 function multiply (a, b) {
-  displayNum.textContent = a * b;
+  let result = a * b;
+  result = Math.floor(result * 100) / 100;
+  displayNum.textContent = result.toFixed(3);
 }
 function divide (a, b) {
   let result = a / b;
   result = Math.floor(result * 100) / 100;
-  displayNum.textContent = result.toFixed(2);
+  displayNum.textContent = result.toFixed(3);
 }
 
 function operate(a, operator, b) {
