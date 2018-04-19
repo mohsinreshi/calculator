@@ -1,14 +1,16 @@
 function add (a, b) {
-  console.log(a + b);
+  displayNum.textContent = a + b;
 }
 function subtract (a, b) {
-  console.log(a - b);
+  displayNum.textContent = a - b;
 }
 function multiply (a, b) {
-  console.log(a * b);
+  displayNum.textContent = a * b;
 }
 function divide (a, b) {
-  console.log(a / b);
+  let result = a / b;
+  result = Math.floor(result * 100) / 100;
+  displayNum.textContent = result.toFixed(2);
 }
 
 function operate(a, operator, b) {
@@ -44,10 +46,14 @@ function operate(a, operator, b) {
   let num1 = 0;
   let num2 = 0;
   operateButtons.forEach(operateButton => operateButton.onclick = function() {
-    num1 = parseFloat(displayNum.textContent);
-    operand = operateButton.value;
-    num.splice(0, num.length);
-    displayNum.textContent = num.join('');
+    if (num.length == 0 && operateButton.value == '-') num.push(operateButton.value);
+    else {
+      num1 = parseFloat(displayNum.textContent);
+      operand = operateButton.value;
+      num.splice(0, num.length);
+      displayNum.textContent = num.join('');
+      displayNum.textContent = operateButton.value;
+    }
   });
 
   let equalButton = document.querySelector('.equal');
@@ -59,6 +65,9 @@ function operate(a, operator, b) {
   let clearButton = document.querySelector('.clear');
   clearButton.onclick = function() {
     num.splice(0, num.length);
+    num1 = 0;
+    num2 = 0;
+    operand = "";
     displayNum.textContent = num.join('');
     if (num.length <= 0) displayNum.textContent = 0;
   }
